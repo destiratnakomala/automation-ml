@@ -16,6 +16,9 @@ def main():
     st.set_page_config(page_title="Data Automation-Machine Learning")
     st.title("Machine Learning")
 
+    uploaded_file = None
+    data = None
+
     # Step 1: Upload Data
     with st.expander("1: Add Your Data Source"):
         uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
