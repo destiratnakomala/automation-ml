@@ -16,12 +16,18 @@ def main():
     st.set_page_config(page_title="Data Automation-Machine Learning")
     st.title("Machine Learning")
 
-    uploaded_file = None
-    data = None
-
-    # Step 1: Upload Data
     with st.expander("1: Add Your Data Source"):
         uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
+        
+        # If no file is uploaded, load example.csv
+        if uploaded_file is None:
+            try:
+                data = pd.read_csv('example.csv')  # Load example CSV
+                st.info("Loaded example.csv")
+            except FileNotFoundError:
+                st.error("Example CSV file not found. Please upload your own CSV file.")
+        else:
+            data = pd.read_csv(uploaded_file)
 
     with st.expander("2: DataSet Preview"):
         if uploaded_file is not None:
